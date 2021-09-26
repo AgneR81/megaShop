@@ -1,10 +1,10 @@
 
 
 @extends('layouts.app')
+
 @section('content')
 <div class="container">
-lBAS {{Auth::user()->name}}
-        @if(Auth::user()->isAdmin())
+@if(Auth::user()->isAdmin())
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card"> 
@@ -30,11 +30,10 @@ lBAS {{Auth::user()->name}}
         </div>
     </div>
     @endif
-
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" >
-                <div class="card-header"style="color:Red;" >
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+      <div class="card-header" >
                     @if (count($chain)==0)
                     HOME
                     @endif
@@ -43,20 +42,30 @@ lBAS {{Auth::user()->name}}
                             <a href="{{route('category.map',$item)}}"> {{$item->name}} ></a>
                         @endforeach
                 </div>
-                <div class="card-body">
-                    <a href="{{route('category.index')}}"style="color:green;" > Home</a><br>
+        <div class="card-body">
+        <table class="table table-striped">
+            
+            <tbody>
 
-                    <br>
-
-                    @foreach ($categories as $category)
-                        <a href="{{route('category.map',$category)}}"> {{$category->name}} </a><br>
-                    @endforeach 
-                </div>
-            </div>
+            
+            @foreach ($categories as $category)
+            <tr>
+              <td><a href="{{route('category.map',$category)}}"> {{$category->name}} </a></td>
+              
+              <td class="align-middle text-center">
+                <a class="btn btn-primary" href="{{route('category.edit',[$category])}}">EDIT</a>
+                <form style="display: inline-block" method="POST" action="{{route('category.destroy', $category)}}">
+                    @csrf
+                    <button class="btn btn-danger" type="submit">DELETE</button>
+                  </form>
+              </td>
+            </tr>
+            @endforeach
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
-
-    
-
+  </div>
 </div>
 @endsection

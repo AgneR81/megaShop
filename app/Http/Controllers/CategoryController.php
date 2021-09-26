@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Parameter;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -90,7 +91,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $parameters = Parameter::all();
+        $categories = Category::where('id','!=',$category->id)->get();
+        return view('category.edit', ['category' => $category, 'parameters'=>$parameters, 'categories'=>$categories]);
     }
 
     /**
