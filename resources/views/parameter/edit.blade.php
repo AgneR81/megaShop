@@ -8,16 +8,16 @@
             <div class="card-header">Atnaujinti</div>
 
             <div class="card-body">
-               <form method="POST" action="{{route('category.update',$category)}}" enctype="multipart/form-data">
+               <form method="POST" action="{{route('parameter.update',$parameter)}}" enctype="multipart/form-data">
                   <div class="form-group">
-                      <label>Augalo pavadinimas</label>
-                      <input type="text" name="name" value="{{$category->title}}" class="form-control">
-                      <small class="form-text text-muted">Augalo pavadinimas.</small>
+                      <label>Parametras</label>
+                      <input type="text" name="name" value="{{$parameter->title}}" class="form-control">
+                      <small class="form-text text-muted">Parametras</small>
                   </div>
                   <div class="form-group">
-                      <label>Augalo pavadinimas</label>
-                      <input type="text" name="name" value="{{$category->data_type}}" class="form-control">
-                      <small class="form-text text-muted">Augalo pavadinimas.</small>
+                      <label>Matavimo vienetai</label>
+                      <input type="text" name="name" value="{{$parameter->data_type}}" class="form-control">
+                      <small class="form-text text-muted">Matavimo vienetai</small>
                   </div>
                   @csrf
                   <button class="btn btn-success" type="submit">EDIT</button>

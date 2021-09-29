@@ -34,7 +34,7 @@
                        @endforeach
                     </select>
                     {{-- <input type="text" name="name" value="{{$category->data_type}}" class="form-control"> --}}
-                    <small class="form-text text-muted">Augalo pavadinimas.</small>
+                    <small class="form-text text-muted">parametras</small>
                 </div>
                   @csrf
                   <button class="btn btn-success" type="submit">EDIT</button>

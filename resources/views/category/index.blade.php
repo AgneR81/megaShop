@@ -12,19 +12,16 @@
                     Admino panele
                 </div>
                 <div class="card-body">
-                    <form action="{{route('category.store')}}" method="post">
-                        @csrf 
-                        <input type="text" name="name" autocomplete="on">
-                        @php
-                            if(count($chain) == 0) {
-                                $categoryId = 0;
-                            }else{
-                                $categoryId = $chain[count($chain) -1]->id;
-                            }
-                        @endphp
-                        <input type="hidden" name="category_id" value="{{ $categoryId}}">
-                        <button type="submit">prideti</button>
-                    </form>
+                @if ((count($chain) > 0))
+                    
+                    <a style="font-size:20px" href="{{route('item.create',[ $chain[count($chain)-1] ] )}}">Įdėti prekę į "{{$chain[count($chain)-1]->name}}" kategoriją</a><br>
+                    <?php $category =  $chain[count($chain)-1] ; ?>
+                        
+                    @else
+                    <?php $category =  0; ?>
+                    @endif
+                    <a style="font-size:20px" href="{{route('category.create',[ $category ] )}}">sukurti kategoriją šiame gylyje</a> 
+                    
                 </div>
             </div>
         </div>
@@ -34,6 +31,9 @@
     <div class="col-md-8">
       <div class="card">
       <div class="card-header" >
+        <h1>{{(count($chain) > 0)?$chain[count($chain)-1]->name :""}}</h1>
+        </div>
+        <div class="card-header" >
                     @if (count($chain)==0)
                     HOME
                     @endif

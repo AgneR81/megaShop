@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Item;
 use App\Models\Parameter;
 use Illuminate\Http\Request;
 
@@ -48,9 +49,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $categoryId)
     {
-        
+        $parameters = Parameter::all();
+       return view('category.create',['categoryId'=>$categoryId,'parameters'=>$parameters]);
     }
 
     /**
@@ -68,8 +70,11 @@ class CategoryController extends Controller
                 $category->category_id = $request->category_id;
             }
             $category->save();
-            return redirect()->back();
-        }
+            foreach ($request->parameters as $parameter) {
+                $category->parameters()->attach($parameter);
+             }
+            return redirect()->route('category.map',$request->category_id);
+        }   
     }
 
     /**
@@ -105,7 +110,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->name = $request->name;
+        $category->category_id = $request->category_id;
+        $category->save();
+        foreach ($request->parameters as $parameter) {
+            $category->parameters()->attach($parameter);
+         }
+         return redirect()->route('category.index')->with('success_message', 'Sėkmingai pakeistas.');
     }
 
     /**
