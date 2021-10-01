@@ -5,7 +5,7 @@
    <div class="row justify-content-center">
       <div class="col-md-8">
          <div class="card">
-            <div class="card-header">Atnaujinti</div>
+            <div class="card-header">Atnaujinti kategorija</div>
 
             <div class="card-body">
                <form method="POST" action="{{route('category.update',$category)}}" enctype="multipart/form-data">

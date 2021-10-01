@@ -40,7 +40,7 @@
 
                   <div class="form-group">
                       <label>{{$param->title}}</label>
-                      <input type="text" name="{{$param->id}}"  class="form-control" placeholder="{{$param->data_type}}}">
+                      <input type="text" name="{{$param->id}}"  class="form-control" placeholder="{{$param->data_type}}">
                       <small class="form-text text-muted">.</small>
                   </div>
                   @endforeach

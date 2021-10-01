@@ -51,7 +51,7 @@ class ItemController extends Controller
             
             $item->save();
             $category = Category::find($request->category_id);
-            foreach ($request->parameters as $parameter) {
+            foreach ($category->parameters as $parameter) {
                 $item->parameters()->attach($parameter,['data' => $request->input($parameter->id)]);
              }
             return redirect()->route('category.map',$request->category_id);
@@ -65,7 +65,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return view("item.show",['item'=>$item]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Parameter;
+use App\Models\CategoryParameter;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -40,7 +41,14 @@ class CategoryController extends Controller
         $_SESSION['chain'] = $tmpSs;
         // dd($_SESSION['chain'][0]->id);
         $categories = Category::where('category_id','=',$category->id)->get();
-        return view('category.index',['categories'=> $categories,'chain'=>$_SESSION['chain']]);
+        $parameters = Parameter::all();
+        $items = Item::where('category_id','=',$category->id)->get();
+        return view('category.index',[
+            'categories'=> $categories,
+            'chain'=>$_SESSION['chain'],
+            'parameters'=>$parameters,
+            'items'=>$items
+            ]);
     }   
 
 
@@ -63,7 +71,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        {
+        
             $category = new Category();
             $category->name = $request->name;
             if($request->category_id != 0){
@@ -74,7 +82,7 @@ class CategoryController extends Controller
                 $category->parameters()->attach($parameter);
              }
             return redirect()->route('category.map',$request->category_id);
-        }   
+          
     }
 
     /**
@@ -113,6 +121,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->category_id = $request->category_id;
         $category->save();
+        //istrink visus many to many lenteles irasus susijusius su cia konkrecia kategorija
+        
         foreach ($request->parameters as $parameter) {
             $category->parameters()->attach($parameter);
          }
@@ -127,6 +137,37 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+      //+  //jeigu yra tos kategorijos prekiu, grizti su eroru, kad negalima trinti nes yra prekiu
+        // nesigilinant trinam category_parameters duomenis.
+        // $category->delete();
+        // return redirect()->route('category.index')->with('error_message', 'Vajeezau! kas cia nutiko?!');
+        
+        if(Item::where("category_id","=",$category->id)->get()->count() > 0){
+            return redirect()->back()->with('error_message', 'There are items in this category');
+
+        }
+        CategoryParameter::where("category_id","=",$category->id)->delete();
+
+        $category->delete();
+        return redirect()->route('category.index')->with('success_message', 'sekmingai istrinta');
+        
+
+    //     $category = Category::findOrFail($category);
+    //     if(count($category->parameters))
+    // {
+    //     $parameters = $category->parameters;
+    //     foreach($parameters as $par)
+    //     {
+    //         $par = Category::findOrFail($par->category);
+    //         $par->parent_id = null;
+    //         $par->save();
+    //     }
+    // }
+    //     $category->delete();
+    //     return redirect()->back()->with('error_message', 'Category has been deleted successfully.');
     }
+
+
+    
+
 }

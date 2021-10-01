@@ -21,7 +21,7 @@
                     <?php $category =  0; ?>
                     @endif
                     <a style="font-size:20px" href="{{route('category.create',[ $category ] )}}">sukurti kategoriją šiame gylyje</a> 
-                    
+
                 </div>
             </div>
         </div>
@@ -41,26 +41,46 @@
   
                             <a href="{{route('category.map',$item)}}"> {{$item->name}} ></a>
                         @endforeach
-                </div>
-        <div class="card-body">
-        <table class="table table-striped">
-            
-            <tbody>
-
-            
-            @foreach ($categories as $category)
-            <tr>
-              <td><a href="{{route('category.map',$category)}}"> {{$category->name}} </a></td>
+        </div>
+          <div class="card-body">
+            <table class="table table-striped">
+            <tbody>            
+              @foreach ($categories as $category)
+              <tr>
+                <td><a href="{{route('category.map',$category)}}"> {{$category->name}} </a></td>
               
-              <td class="align-middle text-center">
-                <a class="btn btn-primary" href="{{route('category.edit',[$category])}}">EDIT</a>
-                <form style="display: inline-block" method="POST" action="{{route('category.destroy', $category)}}">
+                <td class="align-middle text-center">
+                  <a class="btn btn-primary" href="{{route('category.edit',[$category])}}">EDIT</a>
+                  <form style="display: inline-block" method="POST" action="{{route('category.destroy', $category)}}">
                     @csrf
                     <button class="btn btn-danger" type="submit">DELETE</button>
                   </form>
-              </td>
+                </td>
             </tr>
             @endforeach
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-striped">
+            <tbody>            
+              @if(isset($items))
+              @foreach ($items as $item)
+              <tr>
+               <td>{{$item->name}}</td>
+              
+                <td class="align-middle text-center">
+                  <a class="btn btn-primary" href="{{route('item.show',[$item])}}">SHOW</a>
+                  <a class="btn btn-primary" href="{{route('item.edit',[$item])}}">EDIT</a>
+                  <form style="display: inline-block" method="POST" action="{{route('item.destroy', $item)}}">
+                    @csrf
+                    <button class="btn btn-danger" type="submit">DELETE</button>
+                  </form>
+                </td>
+            </tr>
+            @endforeach
+            @endif
             </tbody>
           </table>
         </div>
