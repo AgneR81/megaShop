@@ -10,9 +10,14 @@
             <div class="card-body">
                <form method="POST" action="{{route('item.store')}}" >
                   <div class="form-group">
-                      <label>Prekes pavadinimas</label>
+                      <label>Pavadinimas</label>
                       <input type="text" name="name"  class="form-control">
                       <small class="form-text text-muted">Prekes pavadinimas.</small>
+                  </div>
+                  <div class="form-group">
+                      <label>Gamintojas</label>
+                      <input type="text" name="manufacturer"  class="form-control">
+                      <small class="form-text text-muted">gamintojas.</small>
                   </div>
                   <div class="form-group">
                       <label>Prekes kaina</label>
@@ -44,6 +49,14 @@
                       <small class="form-text text-muted">.</small>
                   </div>
                   @endforeach
+                  <div>
+                        <label>Nuotraukos</label>
+                        <br>
+                        <input type="file" name="photos[]" multiple>
+                        <br>
+                        <small class="form-text text-muted">Pasirinkite prekės nuotraukas</small>
+                  </div>
+
                   @csrf
                   <button class="btn btn-success" type="submit">ADD</button>
                </form>

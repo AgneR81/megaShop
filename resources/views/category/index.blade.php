@@ -6,7 +6,7 @@
 <div class="container">
 @if(Auth::user()->isAdmin())
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-12">
             <div class="card"> 
                 <div class="card-header">
                     Admino panele
@@ -14,7 +14,7 @@
                 <div class="card-body">
                 @if ((count($chain) > 0))
                     
-                    <a style="font-size:20px" href="{{route('item.create',[ $chain[count($chain)-1] ] )}}">Įdėti prekę į "{{$chain[count($chain)-1]->name}}" kategoriją</a><br>
+                    <a style="font-size:20px" style="font-family: Montserat Bold" href="{{route('item.create',[ $chain[count($chain)-1] ] )}}">Įdėti prekę į "{{$chain[count($chain)-1]->name}}" kategoriją</a><br>
                     <?php $category =  $chain[count($chain)-1] ; ?>
                         
                     @else
@@ -28,10 +28,10 @@
     </div>
     @endif
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-lg-12">
       <div class="card">
       <div class="card-header" >
-        <h1>{{(count($chain) > 0)?$chain[count($chain)-1]->name :""}}</h1>
+        <h1 style="font-family: Montserat Bold">{{(count($chain) > 0)?$chain[count($chain)-1]->name :""}}</h1>
         </div>
         <div class="card-header" >
                     @if (count($chain)==0)
@@ -39,12 +39,20 @@
                     @endif
                         @foreach ($chain as $item)
   
-                            <a href="{{route('category.map',$item)}}"> {{$item->name}} ></a>
+                            
+                            @if(next($chain))
+                            <a class="chain" href="{{route('category.map',$item)}}"> {{$item->name}} ></a>
+                            @else
+                            <a class="chain chain-last" href="{{route('category.map',$item)}}"> {{$item->name}} </a>
+                            @endif
                         @endforeach
         </div>
           <div class="card-body">
             <table class="table table-striped">
-            <tbody>            
+            <tbody>  
+              
+            
+            
               @foreach ($categories as $category)
               <tr>
                 <td><a href="{{route('category.map',$category)}}"> {{$category->name}} </a></td>
@@ -63,26 +71,42 @@
         </div>
 
         <div class="card-body">
-            <table class="table table-striped">
-            <tbody>            
-              @if(isset($items))
-              @foreach ($items as $item)
-              <tr>
-               <td>{{$item->name}}</td>
+        @if(isset($items))
+            <!-- <table class="table table-striped"> -->
+               <!-- <tbody>
+                  <tr>
+                    <th>pavadinimas</th>
+                    <th class="text-center">kaina</th>
+                    <th class="text-center">valdymas</th>
+                  </tr>   -->
+
+
+                     
               
+              @foreach ($items as $item)
+              <div style="background-color: red; width: 250px; height: 250px; padding: 5px; display: inline-block;">
+            <div>$item->name</div>
+            
+            
+            </div>
+              <!-- <tr>
+               <td>{{$item->name}}</td>
+              <td>{{$item->price}}</td>
+              {{-- <td class=""> <a href="{{route('item.map',$item)}}"> {{$item->name}}</a></td> --}}
+                  {{-- <td class="align-middle text-center">{{$parameter->data_type}}</td> --}}
                 <td class="align-middle text-center">
-                  <a class="btn btn-primary" href="{{route('item.show',[$item])}}">SHOW</a>
+                  <a class="btn btn-outline-primary" href="{{route('item.show',[$item])}}">SHOW</a>
                   <a class="btn btn-primary" href="{{route('item.edit',[$item])}}">EDIT</a>
                   <form style="display: inline-block" method="POST" action="{{route('item.destroy', $item)}}">
                     @csrf
                     <button class="btn btn-danger" type="submit">DELETE</button>
                   </form>
                 </td>
-            </tr>
+            </tr> -->
             @endforeach
             @endif
-            </tbody>
-          </table>
+            <!-- </tbody>
+          </table> -->
         </div>
       </div>
     </div>

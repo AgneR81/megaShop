@@ -62,7 +62,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #EEEDE7;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -475,7 +475,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f8fafc;
+  background-color: #EEEDE7;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -3735,13 +3735,13 @@ input[type=button].btn-block {
   outline: 0;
 }
 .custom-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #EEEDE7, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 .custom-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #EEEDE7, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 .custom-range:focus::-ms-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #EEEDE7, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 .custom-range::-moz-focus-outer {
   border: 0;
@@ -3915,8 +3915,8 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  background-color: #EEEDE7;
+  border-color: #dee2e6 #dee2e6 #EEEDE7;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -10001,4 +10001,64 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+.chain {
+  color: #868B8E;
+  font-weight: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-family: "Montserat Bold", "Times New Roman", Times, serif;
+}
+
+.chain:hover {
+  color: #eb6161;
+  font-weight: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-family: "Montserat Bold", "Times New Roman", Times, serif;
+}
+
+.chain-last {
+  font-weight: 900;
+}
+
+.chain-last:hover {
+  font-weight: 900;
+}
+
+.Item {
+  background-color: #f5eeee;
+  width: 250px;
+  height: 380px;
+  margin: 5px;
+  display: inline-block;
+  position: relative;
+}
+
+.Item:hover {
+  box-shadow: 0px 1px 10px 3px rgba(171, 136, 136, 0.69);
+  -webkit-box-shadow: 0px 1px 10px 3px rgba(171, 136, 136, 0.69);
+  -moz-box-shadow: 0px 1px 10px 3px rgba(171, 136, 136, 0.69);
+  border: gray solid 2px;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.avoid-clicks {
+  pointer-events: none;
+}
+
+.heart {
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+h1 {
+  color: #3a393b;
 }
