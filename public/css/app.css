@@ -10062,3 +10062,8 @@ h3 {
 h1 {
   color: #3a393b;
 }
+
+img {
+  max-height: 230px;
+  max-width: 198px;
+}

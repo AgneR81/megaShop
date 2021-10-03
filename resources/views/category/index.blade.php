@@ -84,13 +84,20 @@
                     <!--1!!!!! KORTELIU ATVAIZDAVIMAS  !!!!!!!-->
               
               @foreach ($items as $item)
-              <div style="background-color: #E7D2CC; width: 250px; height: 350px; margin: 5px 5px; display: inline-block;">
+              <div class="Item" style="background-color: #E7D2CC; width: 250px; height: 350px; margin: 5px 5px; display: inline-block;">
               <div style="text-align:center;">{{$item->name}}</div>
-              <div style="border: solid grey 1px; margin-left:25px; width: 200px; height:200px"></div>
-                       
+              <div style="border: solid grey 1px; margin-left:25px; width: 200px; height:200px">
+              @if(count($item->photos) > 0)
+              <img  style="max-height:230px; max-width:198px;"  src="{{asset("/images/items/small/".$item->photos[0]->name)}}" alt="">
+              @else
+              <img style="max-height:230px; max-width:198px;"  src="{{asset("/images/icons/defaultPlaceholder.png")}}" >
+              @endif 
+            </div>
+                      
               <div style="margin-left:25px; font-weight:900; font-size:18px; position:relative">{{$item->price}}€</div>
               <div style="margin-left:25px;" >Gamintojas: {{$item->manufacturer}}</div>
               <div style="margin-left:25px;" >Prekės likutis: {{$item->quantity}}</div>
+              <button style="margin-left:80px; z-index:99" class="btn btn-outline-secondary">Į krepšelį</button> 
             </div>
               <!-- <tr>
                <td>{{$item->name}}</td>
