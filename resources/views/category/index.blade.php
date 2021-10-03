@@ -81,19 +81,22 @@
                   </tr>   -->
 
 
-                     
+                    <!--1!!!!! KORTELIU ATVAIZDAVIMAS  !!!!!!!-->
               
               @foreach ($items as $item)
-              <div style="background-color: red; width: 250px; height: 250px; padding: 5px; display: inline-block;">
-            <div>$item->name</div>
-            
-            
+              <div style="background-color: #E7D2CC; width: 250px; height: 350px; margin: 5px 5px; display: inline-block;">
+              <div style="text-align:center;">{{$item->name}}</div>
+              <div style="border: solid grey 1px; margin-left:25px; width: 200px; height:200px"></div>
+                       
+              <div style="margin-left:25px; font-weight:900; font-size:18px; position:relative">{{$item->price}}€</div>
+              <div style="margin-left:25px;" >Gamintojas: {{$item->manufacturer}}</div>
+              <div style="margin-left:25px;" >Prekės likutis: {{$item->quantity}}</div>
             </div>
               <!-- <tr>
                <td>{{$item->name}}</td>
-              <td>{{$item->price}}</td>
+               <td>{{$item->price}}</td>
               {{-- <td class=""> <a href="{{route('item.map',$item)}}"> {{$item->name}}</a></td> --}}
-                  {{-- <td class="align-middle text-center">{{$parameter->data_type}}</td> --}}
+              {{-- <td class="align-middle text-center">{{$parameter->data_type}}</td> --}}
                 <td class="align-middle text-center">
                   <a class="btn btn-outline-primary" href="{{route('item.show',[$item])}}">SHOW</a>
                   <a class="btn btn-primary" href="{{route('item.edit',[$item])}}">EDIT</a>

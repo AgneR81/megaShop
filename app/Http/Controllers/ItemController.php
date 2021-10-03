@@ -65,22 +65,26 @@ class ItemController extends Controller
                 $item->parameters()->attach($parameter,['data' => $request->input($parameter->id)]);
              }
 
-             if ($request->has('photos')){
-                foreach ($request->file('photos') as $photo) {
-                    $img = Image::make($photo);
-                    $fileName = Str::random(5).'.jpg';
-                    $folderBig = public_path('itemPhotos\big');
-                    $folderSmall = public_path('itemPhotos\small');
-                    $img->save($folderBig."/".$fileName,80,'jpg'); 
-                    $img->resize(200,null,function ($constraint) {
+             if ($request->has('photos')) {
+                foreach ($request->file('photos') as  $photo) {
+                    //  var_dump($photo);
+                    $img = Image::make($photo); //bitu kratinys, be jokios info
+                    $fileName = Str::random(5).'.jpg';// random sugalvojau
+                    $folder = public_path('images/items');     
+                    $img->resize(1200, null, function ($constraint) {
                         $constraint->aspectRatio();
                     });
-                    $img->save($folderSmall."/".$fileName,80,'jpg'); //skaicius kokybes
-                    $photo = new Photo ();
-                    $photo->name = $fileName;
-                    $photo->item_id = $item->id;
-                    $photo->save();
+                    $img->save($folder.'/big/'.$fileName, 80, 'jpg');
     
+                    // $img = Image::make($photo);
+                    $img->resize(200, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $img->save($folder.'/small/'.$fileName, 80, 'jpg');
+                    $photo = new Photo();
+                    $photo->name = $fileName;
+                    $photo->item_id =  $item->id;
+                    $photo->save();
                 }
             }
 

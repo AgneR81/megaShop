@@ -8,9 +8,9 @@
             <div class="card-header">Sukurti {{$category->name}} kategorijoje nauja preke</div>
 
             <div class="card-body">
-               <form method="POST" action="{{route('item.store')}}" >
+               <form method="POST" action="{{route('item.store')}}" enctype="multipart/form-data">
                   <div class="form-group">
-                      <label>Pavadinimas</label>
+                      <label>Prekes pavadinimas</label>
                       <input type="text" name="name"  class="form-control">
                       <small class="form-text text-muted">Prekes pavadinimas.</small>
                   </div>
@@ -20,12 +20,12 @@
                       <small class="form-text text-muted">gamintojas.</small>
                   </div>
                   <div class="form-group">
-                      <label>Prekes kaina</label>
+                      <label>Kaina</label>
                       <input type="text" name="price"  class="form-control">
                       <small class="form-text text-muted">Prekes kaina</small>
                   </div>
                   <div class="form-group">
-                      <label>Prekes aprasas</label>
+                      <label>Aprasas</label>
                       <input type="text" name="description"  class="form-control">
                       <small class="form-text text-muted">Prekes aprasas</small>
                   </div>

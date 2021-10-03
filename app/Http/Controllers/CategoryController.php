@@ -43,6 +43,7 @@ class CategoryController extends Controller
         $categories = Category::where('category_id','=',$category->id)->get();
         $parameters = Parameter::all();
         $items = Item::where('category_id','=',$category->id)->get();
+        // $items = Item::where('category_id','=',$category->id)->where('status','=',10)->get(); su siuo bus atvaizduojama tik aktyvios prekes, nepriklausomai kas ziur
         return view('category.index',[
             'categories'=> $categories,
             'chain'=>$_SESSION['chain'],

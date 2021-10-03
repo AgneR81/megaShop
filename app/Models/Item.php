@@ -10,7 +10,7 @@ class Item extends Model
     use HasFactory;
     public function parameters()
     {
-        return $this->belongsToMany(Parameter::class,'item_parameters');
+        return $this->belongsToMany(Parameter::class,'item_parameters')->withPivot(['data']);
     }
     public function photos()
     {
