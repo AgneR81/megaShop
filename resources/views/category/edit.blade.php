@@ -15,7 +15,7 @@
                       <small class="form-text text-muted">Kategorijos pavadinimas.</small>
                   </div>
                   <div class="form-group">
-                     <label>Subkategorija</label>
+                     <label>Pagrindine kategorija</label>
                      <select class="custom-select" name="category_id">
                         
                         @foreach ($categories as $categoriesOne)
@@ -37,7 +37,7 @@
                     <small class="form-text text-muted">parametras</small>
                 </div>
                   @csrf
-                  <button class="btn btn-success" type="submit">EDIT</button>
+                  <button class="btn btn-success" type="submit">Atnaujinti</button>
                </form>
             </div>
          </div>

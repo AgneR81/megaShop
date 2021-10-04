@@ -24,7 +24,7 @@
     font-weight: 900;
 }
 .Item {
-    background-color: rgb(245, 238, 238);
+    background-color:#E7D2CC;;
     width:250px;
     height:380px;
     margin:5px; 
@@ -44,11 +44,22 @@
 .avoid-clicks {
     pointer-events: none;
   }
+  .discount {
+    position: absolute;
+     padding: 0 7px;
+      background-color:#868B8E;
+     border-radius: 20px;
+      color:yellow;  
+      transform: rotate(-12deg);
+       font-size:25px;
+         bottom:35px;
+     right:20px;
+  }
 
   .heart{
       height:25px;
       width:25px;
-      background-color: red;
+      background-color: rgb(44, 4, 4);
       position: absolute;
       bottom: 10px;
       left: 10px;

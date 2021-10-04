@@ -49,6 +49,28 @@ class ItemController extends Controller
      */
     public function store(Request $request, Category $category )
     {
+        $validator = Validator::make($request->all(),
+        [
+            
+            'photos[]' => ['mimes:jpg,bmp,png'],
+            'file' => ['max:50120'],
+            'attachments' => ['max:3'],
+            'photos.*' => ['mimes:jpeg,jpg,png,gif','max:5120'],
+        ],
+        [
+            'photos.*.mimes' => '*Vienas iš failų nėra nuotrauka.',
+            'photos.max' => '*Galite turėti ne daugiau 10 nuotraukų.',
+            'photos.*.max' => '*Viena nuotrauka turi neviršyti 5MB.',
+            'photos.image' => '*Visi failai turi būti nuotraukos',
+            'file' => '*Nuotraukos dydis turi neviršyti 5MB  '
+        ]);
+         if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
+
+
         // dd($request->input('price'));
             $item = new Item();
             $item->name = $request->name;
@@ -58,9 +80,13 @@ class ItemController extends Controller
             $item->quantity = $request->quantity;
             $item->category_id = $request->category_id;
             $item->discount = $request->discount;
-            $category = Category::find($request->category_id);
+            $item->status = 0;
+            if(isset($request->show)){
+                $item->status = 10;
+            }
             $item->save();
-
+            $category = Category::find($request->category_id);
+            
             foreach ($category->parameters as $parameter) {
                 $item->parameters()->attach($parameter,['data' => $request->input($parameter->id)]);
              }
@@ -97,8 +123,9 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show($id)
     {
+        $item = Item::find((((((($id/124)-6)/13)-7)/3)-6)/3);
         return view("item.show",['item'=>$item]);
     }
 
@@ -111,6 +138,17 @@ class ItemController extends Controller
     public function edit(Item $item,Category $category)
     {
         return view('item.edit',['item' => $item, 'category' => $category]);
+    }
+
+    public function softDelete(Request $request, Item $item)
+    {
+        if( $request->softDelete == 1){
+            $item->status = 0;
+        }else{
+            $item->status = 10;
+        }
+        $item->save();
+       return redirect()->back();
     }
 
     /**

@@ -10027,7 +10027,7 @@ h3 {
 }
 
 .Item {
-  background-color: #f5eeee;
+  background-color: #E7D2CC;
   width: 250px;
   height: 380px;
   margin: 5px;
@@ -10050,10 +10050,22 @@ h3 {
   pointer-events: none;
 }
 
+.discount {
+  position: absolute;
+  padding: 0 7px;
+  background-color: #868B8E;
+  border-radius: 20px;
+  color: yellow;
+  transform: rotate(-12deg);
+  font-size: 25px;
+  bottom: 35px;
+  right: 20px;
+}
+
 .heart {
   height: 25px;
   width: 25px;
-  background-color: red;
+  background-color: #2c0404;
   position: absolute;
   bottom: 10px;
   left: 10px;

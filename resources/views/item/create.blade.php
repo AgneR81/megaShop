@@ -30,9 +30,14 @@
                       <small class="form-text text-muted">Prekes aprasas</small>
                   </div>
                   <div class="form-group">
-                      <label>Prekes kiekis</label>
+                      <label>Prekes likutis</label>
                       <input type="text" name="quantity"  class="form-control">
-                      <small class="form-text text-muted">Prekes kiekis</small>
+                      <!-- <small class="form-text text-muted">Parametro pavadinimas</small> -->
+                  </div>
+                  <div class="form-group">
+                      <label>Rodyti preke</label>
+                      <input type="checkbox" name="show" id="">
+                      <!-- <small class="form-text text-muted">Parametro pavadinimas</small> -->
                   </div>
                   <div class="form-group">
                       <label>Nuolaida</label>
