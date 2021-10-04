@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('price',10,2);
             $table->text('description');
             $table->integer('quantity');
+            $table->integer('status');
             $table->decimal('discount',10,2);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');

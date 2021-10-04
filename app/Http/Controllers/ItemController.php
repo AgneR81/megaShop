@@ -11,6 +11,7 @@ use App\Models\Parameter;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Str;
+use Validator;
 
 
 class ItemController extends Controller

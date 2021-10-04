@@ -83,26 +83,26 @@
 
                     <!--1!!!!! KORTELIU ATVAIZDAVIMAS  !!!!!!!-->
               
-              @foreach ($items as $item)
+            @foreach ($items as $item)
               <!-- <a href="##sis_varijantas_disablina_ir_kortele"  class="{{($item->status==0)?"avoid-clicks":""}}"> -->
                 <a href="{{route('item.show', ( ( (  ( (  ($item->id*3)  +6)  *3)  +7) *13) +6)* 124) }}">
                 <div class="Item {{($item->status==0)?"disabled":""}}" >
                   <div style="text-align:center;">{{$item->name}}</div>
                   <div style=" margin-left:25px; width: 230px; height:230px; position: relative;">
-                  @if(count($item->photos) > 0)
-                  <img  style="max-height:230px; max-width:100%; position:absolute"  src="{{asset("/images/items/small/".$item->photos[0]->name)}}" alt="">
-                  @else
-                  <img style="max-height:230px; max-width:200px; position:absolute"  src="{{asset("/images/icons/defaultPlaceholder.png")}}" >
-                  @endif 
-                </div>
+                    @if(count($item->photos) > 0)
+                        <img  style="max-height:230px; max-width:100%; position:absolute"  src="{{asset("/images/items/small/".$item->photos[0]->name)}}" alt="">
+                    @else
+                        <img style="max-height:230px; max-width:200px; position:absolute"  src="{{asset("/images/icons/defaultPlaceholder.png")}}" >
+                   @endif 
+                  </div>
 
                 @if($item->discount > 0)        
-                <div style="margin-left:25px; text-decoration:line-through; text-decoration-thickness: 2px; font-weight:900; font-size:18px; position:relative">{{$item->price}}€
-                  <div class="discount" style="position:absolute; padding: 0 7px;  background-color:#868B8E; border-radius: 20px; color:yellow;  transform: rotate(-12deg); font-size:25px; bottom:35px; right:20px;">{{$item->discountPrice()}}€</div>
-                @else
-                <div style="margin-left:25px; font-weight:900; font-size:18px; position:relative">{{$item->price}}€
+                  <div style="margin-left:25px; text-decoration:line-through; text-decoration-thickness: 2px; font-weight:900; font-size:18px; position:relative">{{$item->price}}€
+                    <div class="discount" style="position:absolute; padding: 0 7px;  background-color:#868B8E; border-radius: 20px; color:yellow;  transform: rotate(-12deg); font-size:25px; bottom:35px; right:20px;">{{$item->discountPrice()}}€</div>
+                  @else
+                  <div style="margin-left:25px; font-weight:900; font-size:18px; position:relative">{{$item->price}}€
                 @endif
-                </div>
+                  </div>
 
                   <div style="margin-left:25px;" >Gamintojas: {{$item->manufacturer}}</div>
                   <div style="margin-left:25px;" >Prekės likutis: {{$item->quantity}}</div>
@@ -126,7 +126,7 @@
                 </td>
             </tr> -->
             @endforeach
-            @endif
+          @endif
             <!-- </tbody>
           </table> -->
         </div>
