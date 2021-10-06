@@ -2124,6 +2124,8 @@ var app = new Vue({
   el: '#app'
 });
 
+__webpack_require__(/*! ./testAPI */ "./resources/js/testAPI.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -2167,6 +2169,31 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/testAPI.js":
+/*!*********************************!*\
+  !*** ./resources/js/testAPI.js ***!
+  \*********************************/
+/***/ (() => {
+
+// if (document.getElementById("showItem")) {
+//     console.log("sveiki");
+// }
+// console.log(window.location.href);
+// console.log(window.location.href.includes("map")," vaikstau po kategorijas");
+// console.log(window.location.href.includes("show"), " esu prekeje");
+if (document.getElementById("searchBar")) {
+  var input = document.getElementById('searchBar');
+  var timeout = null;
+  searchBar.addEventListener('keyup', function (e) {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      console.log('Value:', searchBar.value);
+    }, 700);
+  });
+}
 
 /***/ }),
 

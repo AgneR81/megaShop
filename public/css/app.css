@@ -10042,7 +10042,7 @@ h3 {
   border: gray solid 2px;
 }
 
-.disabled {
+.inactive {
   opacity: 0.5;
 }
 
@@ -10060,6 +10060,10 @@ h3 {
   font-size: 25px;
   bottom: 35px;
   right: 20px;
+}
+
+.bg-red {
+  background-color: #ecf38c;
 }
 
 .heart {

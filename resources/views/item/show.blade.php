@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="showItem"></div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -33,6 +34,10 @@
                             <td scope="row">{{$item->description}}</td>
                         </tr>
                         <tr>
+                            <td scope="row">Prekiu kiekis vnt.</td>
+                            <td scope="row">{{$item->quantity}}</td>
+                        </tr>
+                        <tr>
                             <td scope="row">Rodyti preke</td>
                             <td scope="row">
                             <input type="checkbox" name="{{($item->status==0)?"disabled":""}}" id=""> 
@@ -48,6 +53,9 @@
                     </tbody>
                     
                 </table>
+
+                    @if(Auth::user() && Auth::user()->isAdmin())
+
                     <form action="{{route('item.softDelete',$item)}}" method="post">
                              @csrf
                             @if ($item->status == 10)
@@ -56,10 +64,13 @@
                                 <button class="btn btn-success" type="submit" name="softDelete" value=0 >enable</button>
                              @endif
                     </form>
+
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- <script src="{{ asset('js/fromPublic.js') }}"></script> -->
 @endsection

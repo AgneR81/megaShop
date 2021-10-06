@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-@if(Auth::user()->isAdmin())
+@if(Auth::user() && Auth::user()->isAdmin()) 
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card"> 
@@ -26,12 +26,15 @@
             </div>
         </div>
     </div>
-    @endif
+@endif
   <div class="row justify-content-center">
     <div class="col-lg-12">
       <div class="card">
-      <div class="card-header" >
-        <h1 style="font-family: Montserat Bold">{{(count($chain) > 0)?$chain[count($chain)-1]->name :""}}</h1>
+        <div class="card-header" >
+            <h1 style="font-family: Montserat Bold">{{(count($chain) > 0)?$chain[count($chain)-1]->name :""}}</h1>
+
+            <input type="text" name="search" id="searchBar">
+
         </div>
         <div class="card-header" >
                     @if (count($chain)==0)
@@ -84,9 +87,13 @@
                     <!--1!!!!! KORTELIU ATVAIZDAVIMAS  !!!!!!!-->
               
             @foreach ($items as $item)
+            @if( (!Auth::user() && $item->status==0) ||
+            (Auth::user() && !Auth::user()->isAdministrator() && $item->status==0) )
+              @continue
+            @endif  
               <!-- <a href="##sis_varijantas_disablina_ir_kortele"  class="{{($item->status==0)?"avoid-clicks":""}}"> -->
                 <a href="{{route('item.show', ( ( (  ( (  ($item->id*3)  +6)  *3)  +7) *13) +6)* 124) }}">
-                <div class="Item {{($item->status==0)?"disabled":""}}" >
+                <div class="Item {{   ($item->status==0)? " bg-red " :( ($item->quantity==0)?" inactive ":"" )   }}" >
                   <div style="text-align:center;">{{$item->name}}</div>
                   <div style=" margin-left:25px; width: 230px; height:230px; position: relative;">
                     @if(count($item->photos) > 0)
