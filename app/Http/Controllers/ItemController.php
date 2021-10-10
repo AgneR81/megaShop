@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Str;
 use Validator;
+use Response;
 
 
 class ItemController extends Controller
@@ -23,8 +24,31 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        
     }
+
+    // public function api()
+    // {
+    //     return Response::json([
+    //         'status' => 200,
+    //         'msg' => "sveikinu, jus kreipetes i serveriper API ir gavote atsakyma"
+    //     ]);
+        
+    // }
+
+    public function searchBar(Request $request)
+    {
+        // dd($request->statusas);
+        // dd($request->all());
+        $items = Item::where('name', 'like', '%'.$request->searchBar.'%' )->get();
+        return Response::json([
+            'status' => 200,
+            'msg' => "sveikinu, jus kreipetes i serveriper API ir gavote atsakyma is apiPost",
+            'searchBar' => $request->searchBar,
+            'items' => $items
+        ]);
+        
+    } 
 
     /**
      * Show the form for creating a new resource.

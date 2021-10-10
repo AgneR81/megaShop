@@ -2176,24 +2176,53 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*********************************!*\
   !*** ./resources/js/testAPI.js ***!
   \*********************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 // if (document.getElementById("showItem")) {
 //     console.log("sveiki");
 // }
+// const { default: axios } = require("axios");
 // console.log(window.location.href);
 // console.log(window.location.href.includes("map")," vaikstau po kategorijas");
 // console.log(window.location.href.includes("show"), " esu prekeje");
-if (document.getElementById("searchBar")) {
-  var input = document.getElementById('searchBar');
-  var timeout = null;
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"]; // console.log(window.location.href.includes("map")," vaikstau po kategorijas");
+// console.log(window.location.href.includes("show")," esu prekeje");
+
+
+var drpDwn = document.getElementById("lines");
+var searchBar = document.getElementById("searchBar");
+
+if (searchBar) {
   searchBar.addEventListener('keyup', function (e) {
+    var timeout = null;
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      console.log('Value:', searchBar.value);
+      var txt = searchBar.value;
+      axios.post(urlSearchBar, {
+        searchBar: searchBar.value
+      }).then(function (response) {
+        var HTML = '';
+        response.data.items.forEach(function (item) {
+          HTML += ' <a href="#">' + item["name"] + '</a>';
+        });
+        drpDwn.innerHTML = HTML;
+        document.getElementById('searchBar').focus();
+      }); // console.log('Value:', searchBar.value);
     }, 700);
   });
-}
+} // document.getElementById('myDropdown').addEventListener('focusout', function () {
+//     drpDwn.innerHTML = "";
+// });
+//-------------------------//
+// console.log("radau url", url);
+// axios.get(url)
+//     .then(function (response) {
+//         console.log(response.data.msg);
+//     });
+//plain js (fetch)
+//ajax
+//axios
 
 /***/ }),
 

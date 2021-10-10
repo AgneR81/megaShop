@@ -33,7 +33,16 @@
         <div class="card-header" >
             <h1 style="font-family: Montserat Bold">{{(count($chain) > 0)?$chain[count($chain)-1]->name :""}}</h1>
 
-            <input type="text" name="search" id="searchBar">
+            <div class="dropdown">
+              
+              <div id="myDropdown" class="dropdown-content show">
+                <input type="text" placeholder="Search.." id="searchBar" autocomplete="off">
+                <div id="lines"></div>
+              </div>
+            </div>
+
+
+            
 
         </div>
         <div class="card-header" >
@@ -141,4 +150,10 @@
     </div>
   </div>
 </div>
+
 @endsection
+<script>
+
+  let urlSearchBar = "{{route('item.searchBar')}}";
+
+</script>

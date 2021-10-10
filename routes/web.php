@@ -59,3 +59,6 @@ Route::group(['prefix' => 'parameters'], function(){
     Route::get('show/{id}', [ItemController::class, 'show'])->name('item.show');
     Route::post('softDelete/{item}', [ItemController::class, 'softDelete'])->name('item.softDelete');
  });
+
+ Route::post('searchBar', [ItemController::class, 'searchBar'])->name('item.searchBar');
+//  Route::post('apiPost', [ItemController::class, 'apiPost'])->name('item.apiPost');
