@@ -1,3 +1,11 @@
+a:hover {
+    color: red;
+}
+
+.imgpadding {
+    margin-top: 20px;
+}
+
 .chain {
     color: #868B8E;
     font-weight: 0;
@@ -44,7 +52,7 @@
 .avoid-clicks {
     pointer-events: none;
   }
-  .discount {
+.discount {
     position: absolute;
      padding: 0 7px;
       background-color:#868B8E;
@@ -69,7 +77,7 @@
       left: 10px;
   }
 
-  h1 {
+h1 {
       color:#3a393b ;
   }
 

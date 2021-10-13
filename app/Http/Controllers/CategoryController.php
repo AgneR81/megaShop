@@ -156,7 +156,13 @@ class CategoryController extends Controller
         //  return redirect()->route('category.index')->with('success_message', 'Sėkmingai pakeistas.');
             // dd($category);
         $category->name = $request->name;
+        if($request->category_id == "0"){
+            // dd($request->category_id);
+            $category->category_id = null;
+        }
+        else{
         $category->category_id = $request->category_id;
+        }
         $category->save();
         foreach ($category->parameters as $parameter) {
             $iP =  CategoryParameter::where('category_id', '=', $category->id)

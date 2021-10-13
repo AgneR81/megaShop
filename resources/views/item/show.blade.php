@@ -7,6 +7,25 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><a href="javascript:history.back()">< Grįžti atgal</a></div>
+
+                    @if(count($item->photos)>0)
+                    <div class="container__photos">
+                        <div class="photos__column">
+                            <form name="form" action="" method="get">
+                                <div class="text-center imgpadding">
+                                    @foreach ($item->photos as $photo)
+                                    <img class="rounded mx-auto d-block" src="{{asset("/images/items/small/".$item->photos[0]->name)}}" alt="">
+                                    @endforeach
+                                </div>    
+                            </form>
+                        </div>
+
+                    </div>
+
+                    @endif
+
+
+
                 <div class="card-body">
                 <table class="table">
                     <thead>

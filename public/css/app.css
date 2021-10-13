@@ -10002,6 +10002,14 @@ h3 {
     border-color: #dee2e6;
   }
 }
+a:hover {
+  color: red;
+}
+
+.imgpadding {
+  margin-top: 20px;
+}
+
 .chain {
   color: #868B8E;
   font-weight: 0;

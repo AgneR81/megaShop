@@ -32,15 +32,16 @@
       <div class="card">
         <div class="card-header" >
             <h1 style="font-family: Montserat Bold">{{(count($chain) > 0)?$chain[count($chain)-1]->name :""}}</h1>
-
-            <div class="dropdown">
-              
-              <div id="myDropdown" class="dropdown-content show">
-                <input type="text" placeholder="Search.." id="searchBar" autocomplete="off">
-                <div id="lines"></div>
+            <form class="d-flex">
+              <div class="dropdown">
+                
+                <div id="myDropdown" class="dropdown-content show">
+                    <input class="form-control me-2" type="search" placeholder="Search.." id="searchBar" autocomplete="off">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <div id="lines"></div>
+                </div>
               </div>
-            </div>
-
+          </form>
 
             
 

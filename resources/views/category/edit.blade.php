@@ -17,9 +17,9 @@
                   <div class="form-group">
                      <label>Pagrindine kategorija</label>
                      <select class="custom-select" name="category_id">
-                        
+                     <option value="0">nuline kategorija</option>
                         @foreach ($categories as $categoriesOne)
-                            <option value="{{$categoriesOne->id}}">{{$categoriesOne->name}}</option>
+                        l    <option value="{{$categoriesOne->id}}">{{$categoriesOne->name}}</option>
                         @endforeach
                      </select>
                      {{-- <input type="text" name="name" value="{{$category->data_type}}" class="form-control"> --}}
