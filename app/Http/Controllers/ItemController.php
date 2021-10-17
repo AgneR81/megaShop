@@ -40,7 +40,8 @@ class ItemController extends Controller
     {
         // dd($request->statusas);
         // dd($request->all());
-        $items = Item::where('name', 'like', '%'.$request->searchBar.'%' )->get();
+        // $items = Item::where('name', 'like', '%'.$request->searchBar.'%' )->get();
+        $items = Item::with(['photos'])->where('name','like','%'.$request->searchBar.'%')->get();
         return Response::json([
             'status' => 200,
             'msg' => "sveikinu, jus kreipetes i serveriper API ir gavote atsakyma is apiPost",

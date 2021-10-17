@@ -17,7 +17,7 @@ use App\Http\Controllers\ParameterController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 Auth::routes();
@@ -61,4 +61,5 @@ Route::group(['prefix' => 'parameters'], function(){
  });
 
  Route::post('searchBar', [ItemController::class, 'searchBar'])->name('item.searchBar');
-//  Route::post('apiPost', [ItemController::class, 'apiPost'])->name('item.apiPost');
+ Route::post('heart', [ItemController::class, 'heart'])->name('item.heart');
+ Route::get('heart2', [ItemController::class, 'heart2'])->name('item.heart2');
