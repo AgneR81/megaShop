@@ -45,7 +45,7 @@ if (searchBar) {
                     
                     
                     if(item['photos'] !=null && item['photos'].length > 0){
-                        HTML+= ' <img style="width:50px; max-height:50px;" src="'+url+'/items/small/' +item['photos'][0]['name'] + '" alt="">'; 
+                        HTML+= ' <img  class="searchBarImg" src="'+url+'/items/small/' +item['photos'][0]['name'] + '" alt="">'; 
                        }else{
                          HTML+= ' <img style="width:25px; max-height:25px;" src="'+url+'/icons/defaultPlaceholder.png" alt=""> ';
                         }
@@ -89,7 +89,7 @@ function generateCard(item) {
     +( ( (  ( (  (item['id']*3)  +6)  *3)  +7) *13) +6)* 124 + `" >
     <div class="Item '; `;
     if(item['status']==0) {
-        HTML+= " bg-redish ";
+        HTML+= " bg-red ";
     }else if(item['quantity']==0){
             $HTML +=" inactive ";
         }

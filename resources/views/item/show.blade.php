@@ -24,12 +24,25 @@
 
                     @endif
 
+                    @if(Auth::user() && Auth::user()->isAdmin())
 
+                    <table class="table-striped">
+                        <tr >
+                            <td class=" text-right">
+                                <a class="btn btn-primary" href="{{route('item.edit',[$item])}}">Atnaujinti preke</a>
+                                <form style="display: inline-block" method="POST" action="{{route('item.destroy', $item)}}">
+                                    @csrf
+                                    <button class="btn btn-danger" type="submit">Istrinti preke is DB</button>
+                                </form>    
+                            </td>
+                        </tr>    
+                    </table>
+                    @endif
 
                 <div class="card-body">
                 <table class="table">
                     <thead>
-                        <a style="font-size:30px;font-weight:500; font-family:Montserat Bold;">{{$item->name}}</a>
+                        <a class="itemName">{{$item->name}}</a>
                         <tr>
                             <th scope="row">Kaina</th>
                             <th scope="row">{{$item->price}}€</th>
@@ -38,7 +51,7 @@
                     <tbody>
                         <tr>
                             <td scope="row">Nuolaida</td>
-                            <td scope="row">{{$item->discount}}</td>
+                            <td scope="row">{{$item->discount}}%</td>
                         </tr>
                         <tr>
                             <td scope="row">Kaina po nuolaidos</td>
@@ -62,12 +75,8 @@
                             <input type="checkbox" name="{{($item->status==0)?"disabled":""}}" id=""> 
                             </td>
                         </tr>
-                        @foreach ($item->parameters as $parameter)
-                            <tr>
-                                <td scope="row">{{$parameter->title}}</td>
-                                <td scope="row">{{$parameter->pivot->data}} {{$parameter->data_type}}</td>
-                            </tr>
-                        @endforeach
+                        
+                        
                        
                     </tbody>
                     
@@ -85,6 +94,22 @@
                     </form>
 
                     @endif
+
+                    <table>
+                        <tbody>
+                            <thead>
+                                <tr>
+                                    <p class="itemName">Parametrai</p>
+                                </tr>
+                                @foreach ($item->parameters as $parameter)
+                                <tr>
+                                    <td scope="row">{{$parameter->title}}</td>
+                                    <td scope="row">{{$parameter->pivot->data}} {{$parameter->data_type}}</td>
+                                </tr>
+                        @endforeach
+                            </thead>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

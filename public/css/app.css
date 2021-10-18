@@ -10007,7 +10007,7 @@ a:hover {
 }
 
 .imgpadding {
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .chain {
@@ -10236,4 +10236,15 @@ h1 {
 
 .toCart {
   margin-left: 80px;
+}
+
+.itemName {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: Montserat Bold;
+}
+
+.searchBarImg {
+  width: 50px;
+  max-height: 50px;
 }

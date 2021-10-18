@@ -92,6 +92,10 @@ class ParameterController extends Controller
      */
     public function destroy(Parameter $parameter)
     {
+        if($parameter->categories->count()){
+            return redirect()->route('parameter.index')->with('info_message', 'Trinti negalima, nes parametras irasytas i kategorija.');
+
+        }
         $parameter->delete();
         return redirect()->route('parameter.index')->with('success_message', 'Sekmingai ištrintas.');
 

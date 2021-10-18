@@ -155,6 +155,25 @@ class ItemController extends Controller
         return view("item.show",['item'=>$item]);
     }
 
+    public function heart( Request $request)
+    {  
+        if(!isset($_SESSION['heart'])){
+            $_SESSION['heart'] = [];   
+        }
+        $_SESSION['heart'][] = $request->id;
+        return Response::json([
+        'status' => 200,
+        'session' => $_SESSION['heart']
+    ]);
+    }
+    public function heart2( )
+    {  
+        dd($_SESSION);
+       return Response::json([
+        'status' => 200,
+        'session' => $_SESSION
+    ]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -192,17 +211,24 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->quantity = $request->quantity;
         $item->discount = $request->discount;
+        $item->manufacturer = $request->manufacturer;
         $item->save();
         foreach ($item->parameters as $parameter) {
-            $iP =  ItemParameter::where("item_id",'=', $item->id)
-            ->where("parameter_id",'=', $parameter->id)->first();
+            $iP =  ItemParameter::where('item_id','=', $item->id)
+            ->where('parameter_id','=', $parameter->id)->first();
             $iP->data = $request->input($parameter->id);
             $iP->save();
         }
         // return redirect()->route('category.index')->with('success_message', 'Sekmingai pakeistas.');
+        $category = Category::find($request->category_id);
+        if ($request->category_id != 0) {
+            $category->category_id = $request->category_id;
+        } else {
+            $category->category_id = null;
+        }
 
         $category = Category::find($request->category_id);
-        return redirect()->route('category.map',[$category->id])->with('success_message', 'Sekmingai įrašytas.');
+        return redirect()->route('category.map',[$category->id])->with('success_message', 'Preke sekmingai atnaujinta.');
 
     }
 
@@ -215,8 +241,8 @@ class ItemController extends Controller
     public function destroy(Request $request, Item $item)
     {
         foreach ($item->parameters as $parameter) {
-            $iP =  ItemParameter::where("item_id",'=', $item->id)
-            ->where("parameter_id",'=', $parameter->id)->first();
+            $iP =  ItemParameter::where('item_id','=', $item->id)
+            ->where('parameter_id','=', $parameter->id)->first();
             $iP->data = $request->input($parameter->id);
             $iP->delete();
         }

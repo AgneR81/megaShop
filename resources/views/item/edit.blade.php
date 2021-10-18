@@ -27,6 +27,14 @@
                             <label>{{$parameter->title}} ({{$parameter->data_type}})</label>
                             <input type="text" name="{{$parameter->id}}" value="{{$parameter->pivot->data}}" class="form-control"><br>
                         @endforeach
+                        <div>
+                            <label>Nuotraukos</label>
+                            <br>
+                            <input type="file" name="photos[]" multiple>
+                            <br>
+                            <small class="form-text text-muted">Pasirinkite prekės nuotraukas</small>
+                        </div>
+
                     </div>
                         @csrf
                         <br>

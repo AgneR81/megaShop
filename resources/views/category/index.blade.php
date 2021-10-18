@@ -71,7 +71,7 @@
               @foreach ($categories as $category)
               <tr>
                 <td><a href="{{route('category.map',$category)}}"> {{$category->name}} </a></td>
-              
+                @if(Auth::user() && Auth::user()->isAdmin()) 
                 <td class="align-middle text-center">
                   <a class="btn btn-primary" href="{{route('category.edit',[$category])}}">EDIT</a>
                   <form style="display: inline-block" method="POST" action="{{route('category.destroy', $category)}}">
@@ -79,6 +79,7 @@
                     <button class="btn btn-danger" type="submit">DELETE</button>
                   </form>
                 </td>
+                @endif
             </tr>
             @endforeach
             </tbody>
